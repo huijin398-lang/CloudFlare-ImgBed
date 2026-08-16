@@ -3,7 +3,7 @@
  * 用于 GitHub Actions 部署，从 Secrets/Variables 读取配置
  * 
  * 环境变量：
- *   WORKER_NAME      - Worker 名称（默认 cloudflare-imgbed）
+ *   WORKER_NAME      - Worker 名称（默认 hj-imgbed）
  *   D1_DATABASE_ID   - D1 数据库 ID
  *   KV_NAMESPACE_ID  - KV 命名空间 ID
  *   R2_BUCKET_NAME   - R2 存储桶名称
@@ -18,7 +18,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const outputPath = join(__dirname, 'wrangler.toml');
 
 const env = process.env;
-const name = env.WORKER_NAME || 'cloudflare-imgbed';
+const name = env.WORKER_NAME || 'hj-imgbed';
 
 let toml = `name = "${name}"
 main = "index.js"
@@ -39,7 +39,7 @@ if (env.D1_DATABASE_ID) {
     toml += `
 [[d1_databases]]
 binding = "img_d1"
-database_name = "img_d1"
+database_name = "hj-imgbed-db"
 database_id = "${env.D1_DATABASE_ID}"
 `;
 }
